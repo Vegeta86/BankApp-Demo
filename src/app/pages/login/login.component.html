@@ -1,0 +1,21 @@
+<article class="header-container intro" [@fadeOut]="formState">
+    <img class="header-logo fade-in" src="assets/img/bank.svg" alt="">
+</article>
+
+<section [@fadeOut]="formState">
+    <form [formGroup]="loginForm" class="login-container">
+        <mat-form-field class="user-input">
+            <mat-label>Rut</mat-label>
+            <input matInput placeholder="Ej: 1-9" formControlName="rut" (click)="setRut()">
+        </mat-form-field>
+        <mat-form-field class="pass-input">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ej: jperez@demo.cl" formControlName="email">
+        </mat-form-field>
+        <button mat-raised-button class="login-button" color="primary" (click)="login()">Ingresar</button>
+        <p>¿Olvidaste tu cuenta?
+            <button mat-button class="forgot-password">Recupérala aquí</button>
+        </p>
+    </form>
+</section>
+

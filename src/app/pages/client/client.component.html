@@ -1,0 +1,65 @@
+<article class="data-container" [@fadeIn]="formState">
+    <h1 class="header-title fade-in">Bienvenido!</h1>
+    <img class="user-icon" src="assets/img/user-icon.svg" alt="">
+    <h3>{{client.nombre}} {{client.apellido}}</h3>
+    <p>{{client.email}}</p>
+</article>
+
+
+<article class="products-container" [@fadeIn]="formState">
+    <mat-accordion class="products-card">
+        <h3>Mis Productos</h3>
+        <mat-expansion-panel *ngFor="let product of clientProducts" (opened)="setSelectedProduct(product)">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="product-title">
+                    <div *ngFor="let icon of productIcons">
+                        <img *ngIf="product.tipo === icon.tipo" [src]="icon.icono" class="list-icons"
+                            alt="Icono de producto">
+                    </div>
+                    {{product.tipo}}<span *ngIf="product.moneda == 'USD'">en Dolares</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-progress-bar mode="indeterminate" *ngIf="!detailLoaded"></mat-progress-bar>
+
+            <div class="product-detail" *ngIf="detailLoaded">
+                <div class="detail-item">Saldo Disponible <span>{{productBalance.montoDisponible | currencyFormat}}</span></div>
+                <div class="detail-item">Saldo Contable <span>{{productBalance.montoContable | currencyFormat}}</span>
+                </div>
+                <div class="detail-item">Monto Utilizado <span>{{productBalance.montoUtilizado | currencyFormat}}</span>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</article>
+
+<article class="trx-container" [@fadeIn]="formState">
+    <mat-selection-list [multiple]="false" class="trx-content">
+        <h3>Operaciones</h3>
+        <mat-card>
+            <mat-list-option (click)="onTransferClick()">
+                <h4 mat-line>Transferencia</h4>
+                <p mat-line>Realizar una transferencia de fondos</p>
+                <img class="trx-icon" src="assets/img/forward.svg">
+
+            </mat-list-option>
+            <mat-divider></mat-divider>
+            <mat-list-option (click)="onTransferClick()">
+                <h4 mat-line>Pago de Facturas</h4>
+                <p mat-line>Pagar tus facturas pendientes</p>
+                <img class="trx-icon" src="assets/img/forward.svg">
+            </mat-list-option>
+            <mat-divider></mat-divider>
+            <mat-list-option (click)="onTransferClick()">
+                <h4 mat-line>Tarjetas de Crédito</h4>
+                <p mat-line>Administrar tus tarjetas de crédito</p>
+                <img class="trx-icon" src="assets/img/forward.svg">
+            </mat-list-option>
+            <mat-divider></mat-divider>
+            <mat-list-option (click)="onTransferClick()">
+                <h4 mat-line>Préstamos</h4>
+                <p mat-line>Solicitar un préstamo</p>
+                <img class="trx-icon" src="assets/img/forward.svg">
+            </mat-list-option>
+        </mat-card>
+    </mat-selection-list>
+</article>
