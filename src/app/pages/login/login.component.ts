@@ -84,6 +84,6 @@ export class LoginComponent implements OnInit {
 
     setTimeout(() => {
       dialogRef.close();
-    }, 3000);
+    }, 1000);
   }
 }

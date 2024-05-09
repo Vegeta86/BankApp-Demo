@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "numeroProducto": "1000",
+        "montoDisponible": 1000000.00,
+        "montoContable": 1000000.00,
+        "montoUtilizado": 350000.00
+    },
+    {
+        "id": 2,
+        "numeroProducto": "1001",
+        "montoDisponible": 2000000.00,
+        "montoContable": 1000000.00,
+        "montoUtilizado": 0.00
+    },
+    {
+        "id": 3,
+        "numeroProducto": "1003",
+        "montoDisponible": 3000000.00,
+        "montoContable": 3000000.00,
+        "montoUtilizado": 0.00
+    },
+    {
+        "id": 4,
+        "numeroProducto": "1004",
+        "montoDisponible": 2000.00,
+        "montoContable": 2000.00,
+        "montoUtilizado": 0.00
+    }
+]

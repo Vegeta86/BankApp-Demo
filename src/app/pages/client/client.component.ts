@@ -10,7 +10,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { ActivatedRoute } from '@angular/router';
 
 
-
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -55,18 +54,27 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
     const rut = this.route.snapshot.paramMap.get('rut')!;
+    this.client = clienteDummy;
 
+    /*
     this.clientSrv.getClient(rut).subscribe(response => {
       console.log(this.client);
-      this.client = response;
+      
     });
 
     this.clientPrdSrv.getProducts(rut).subscribe(response => {
+
       this.clientProducts = response.map(product => ({
         ...product,
         icon: this.productIcons[Number(product.tipo)]
       }));;
-    });
+    });*/
+
+    this.clientProducts = productosDummy.map(product => ({
+      ...product,
+      icon: this.productIcons[Number(product.tipo)]
+    }));
+
 
     this.formState = 'visible';
 
@@ -82,12 +90,69 @@ export class ClientComponent implements OnInit {
       montoContable: 0,
       montoUtilizado: 0,
     };
+    this.productBalance = balanceDummy;
+    this.detailLoaded = true;
+    /*
     this.clientBalanceSrv.getBalance(product.numero).pipe(delay(2000)).subscribe(response => {
       this.productBalance = response;
       this.detailLoaded = true;
-    });
+
+    });*/
   }
 
   onTransferClick() { }
 
+}
+
+
+
+export const clienteDummy = {
+  id: 1,
+  rut: "1-9",
+  nombre: "Juan",
+  apellido: "Perez",
+  email: "jperez@demo.cl"
+}
+
+export const productosDummy = [
+  {
+    id: 1,
+    numero: "1000",
+    tipo: "Tarjeta Credito",
+    moneda: "CLP",
+    rut: "1-9",
+    token: "TC"
+  },
+  {
+    id: 2,
+    numero: "1001",
+    tipo: "Cuenta Corriente",
+    moneda: "CLP",
+    rut: "1-9",
+    token: "CC"
+  },
+  {
+    id: 3,
+    numero: "1003",
+    tipo: "Linea Credito",
+    moneda: "CLP",
+    rut: "1-9",
+    token: "LC"
+  },
+  {
+    id: 4,
+    numero: "1004",
+    tipo: "Cuenta Corriente",
+    moneda: "USD",
+    rut: "1-9",
+    token: "CC"
+  }
+]
+
+export const balanceDummy = {
+  id: 1,
+  numeroProducto: "1000",
+  montoDisponible: 1000000,
+  montoContable: 1000000,
+  montoUtilizado: 0
 }

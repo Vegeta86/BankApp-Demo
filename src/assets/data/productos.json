@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "numero": "1000",
+        "tipo": "Tarjeta Credito",
+        "moneda": "CLP",
+        "rut": "1-9",
+        "token": "TC"
+    },
+    {
+        "id": 2,
+        "numero": "1001",
+        "tipo": "Cuenta Corriente",
+        "moneda": "CLP",
+        "rut": "1-9",
+        "token": "CC"
+    },
+    {
+        "id": 3,
+        "numero": "1003",
+        "tipo": "Linea Credito",
+        "moneda": "CLP",
+        "rut": "1-9",
+        "token": "LC"
+    },
+    {
+        "id": 4,
+        "numero": "1004",
+        "tipo": "Cuenta Corriente",
+        "moneda": "USD",
+        "rut": "1-9",
+        "token": "CC"
+    }
+]
