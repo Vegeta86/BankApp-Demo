@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GetBalanceResponse } from 'src/app/interfaces/get-balance-response';
-import { GetClientResponse } from 'src/app/interfaces/get-client-response';
+import { Cliente, Response, Datos  } from 'src/app/interfaces/get-client-response';
 import { GetProductsResponse } from 'src/app/interfaces/get-products-response';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { GetClientService } from 'src/app/services/get-client.service';
 import { GetProductsService } from 'src/app/services/get-products.service';
-import { delay } from 'rxjs/operators';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,13 +23,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ClientComponent implements OnInit {
 
-  client: GetClientResponse = {
-    id: 0,
-    rut: '',
-    nombre: '',
-    apellido: '',
-    email: '',
-  };
+  client: any ={};
   clientProducts!: GetProductsResponse[];
   productBalance!: GetBalanceResponse;
 
@@ -54,31 +47,26 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
     const rut = this.route.snapshot.paramMap.get('rut')!;
-    this.client = clienteDummy;
 
-    /*
     this.clientSrv.getClient(rut).subscribe(response => {
-      console.log(this.client);
-      
+     this.client = response.datos.cliente;     
     });
 
+    /*
     this.clientPrdSrv.getProducts(rut).subscribe(response => {
 
       this.clientProducts = response.map(product => ({
         ...product,
         icon: this.productIcons[Number(product.tipo)]
       }));;
-    });*/
+    });
 
     this.clientProducts = productosDummy.map(product => ({
       ...product,
       icon: this.productIcons[Number(product.tipo)]
-    }));
-
+    }));*/
 
     this.formState = 'visible';
-
-
   }
 
   setSelectedProduct(product: GetProductsResponse) {

@@ -185,21 +185,32 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineCom
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetClientService", function() { return GetClientService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment.prod */ "cxbk");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
 
 
 class GetClientService {
     constructor(http) {
         this.http = http;
-        this.URL = '/api/cliente/';
+        this.baseURL = src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__["API"].BASE_APY_URL;
+        this.URL = '/obtener/cliente';
     }
     getClient(rut) {
-        return this.http.get(this.URL + rut);
+        let body = {
+            rut: rut
+        };
+        let bodyJSON = JSON.stringify(body);
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+            'Content-Type': 'application/json'
+        });
+        return this.http.post(this.baseURL + this.URL, bodyJSON, { headers: headers });
     }
 }
-GetClientService.ɵfac = function GetClientService_Factory(t) { return new (t || GetClientService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
-GetClientService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: GetClientService, factory: GetClientService.ɵfac, providedIn: 'root' });
+GetClientService.ɵfac = function GetClientService_Factory(t) { return new (t || GetClientService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
+GetClientService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: GetClientService, factory: GetClientService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -487,13 +498,7 @@ class ClientComponent {
         this.clientPrdSrv = clientPrdSrv;
         this.clientBalanceSrv = clientBalanceSrv;
         this.route = route;
-        this.client = {
-            id: 0,
-            rut: '',
-            nombre: '',
-            apellido: '',
-            email: '',
-        };
+        this.client = {};
         this.productIcons = [
             { tipo: 'Tarjeta Credito', icono: 'assets/img/credit_card_icon.svg' },
             { tipo: 'Cuenta Corriente', icono: 'assets/img/current_account_icon.png' },
@@ -505,21 +510,22 @@ class ClientComponent {
     }
     ngOnInit() {
         const rut = this.route.snapshot.paramMap.get('rut');
-        this.client = clienteDummy;
-        /*
         this.clientSrv.getClient(rut).subscribe(response => {
-          console.log(this.client);
-          
+            this.client = response.datos.cliente;
         });
-    
+        /*
         this.clientPrdSrv.getProducts(rut).subscribe(response => {
     
           this.clientProducts = response.map(product => ({
             ...product,
             icon: this.productIcons[Number(product.tipo)]
           }));;
-        });*/
-        this.clientProducts = productosDummy.map(product => (Object.assign(Object.assign({}, product), { icon: this.productIcons[Number(product.tipo)] })));
+        });
+    
+        this.clientProducts = productosDummy.map(product => ({
+          ...product,
+          icon: this.productIcons[Number(product.tipo)]
+        }));*/
         this.formState = 'visible';
     }
     setSelectedProduct(product) {
@@ -758,6 +764,27 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector
         _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
         _pages_pages_module__WEBPACK_IMPORTED_MODULE_4__["PagesModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"]] }); })();
+
+
+/***/ }),
+
+/***/ "cxbk":
+/*!**********************************************!*\
+  !*** ./src/environments/environment.prod.ts ***!
+  \**********************************************/
+/*! exports provided: environment, API */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API", function() { return API; });
+const environment = {
+    production: true
+};
+const API = {
+    BASE_APY_URL: '/api-usuario/banco'
+};
 
 
 /***/ }),
